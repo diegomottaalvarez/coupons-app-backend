@@ -1,0 +1,22 @@
+{
+  "name": "coupons-app",
+  "version": "1.0.0",
+  "description": "Coupons statistics app",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/index.js",
+    "dev": "nodemon -r src/index.js"
+  },
+  "keywords": [
+    "coupons",
+    "retail"
+  ],
+  "author": "Diego Motta",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "lodash": "^4.17.21"
+  }
+}
