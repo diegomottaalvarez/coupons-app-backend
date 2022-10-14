@@ -2,8 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const { couponRoutes } = require('./routes/coupon.routes.js');
 const app = express();
+const PORT = 4000;
 
-app.set('port', 4000);
+app.set('port', PORT);
 
 app.use(cors());
 

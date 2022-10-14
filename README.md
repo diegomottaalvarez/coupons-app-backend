@@ -15,6 +15,8 @@ You have different endpoints to ask info:
 | GET  | /api/coupons/discount-statistics             | Return discount stadistics                     | promotion_type: 'percent-off', 'buy-one-get-one', 'free-gift', 'free-shipping','dollar-off' |
 | GET  | /api/coupons/discount-statistics-by-retailer | Return discount stadistics grouped by retailer | promotion_type: 'percent-off', 'buy-one-get-one', 'free-gift', 'free-shipping','dollar-off' |
 
+If you want to change port, you must do it in the frontend app (BASE_URL in getData.js) and also in the backend (PORT variable in server.js)
+
 ## Project setup
 
 ```
