@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 const PROMOTION_TYPES = {
   PERCENT_OFF: 'percent-off',
   BUY_ONE_GET_ONE: 'buy-one-get-one',
@@ -29,12 +27,16 @@ const getCouponsWithDiscountByFilter = (coupons, filter) => {
 const getMinMaxAverageTotal = (coupons) => {
   const couponValues = coupons.map((coupon) => coupon.value);
   const minMax = {
-    min: _.min(couponValues),
-    max: _.max(couponValues),
-    average: _.mean(couponValues),
+    min: Math.min(...couponValues),
+    max: Math.max(...couponValues),
+    average: calculateAverage(couponValues),
     total: coupons.length,
   };
   return minMax;
+};
+
+const calculateAverage = (numbers) => {
+  return numbers.reduce((a, b) => a + b) / numbers.length;
 };
 
 const groupCouponsByRetailer = (coupons) => {
