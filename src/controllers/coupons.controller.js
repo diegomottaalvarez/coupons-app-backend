@@ -11,19 +11,6 @@ const coupons = require('../../coupons.json');
 
 const getCoupons = async (req, res = response) => {
   try {
-    console.table(
-      'COUPONS OF EACH TYPE',
-      countCouponsOfEachType(coupons.coupons)
-    );
-    const filter = PROMOTION_TYPES.DOLLAR_OFF;
-    const discount = getCouponsWithDiscountByProcessType(
-      coupons.coupons,
-      filter
-    );
-
-    const process = getMinDiscountMaxDiscount(discount);
-    console.log(filter, process);
-
     res.status(201).json(coupons);
   } catch (error) {
     console.log(error);
@@ -80,11 +67,12 @@ const getDiscountStatisticsByRetailer = async (req, res = response) => {
     );
     const couponsByRetailer = groupCouponsByRetailer(filteredCoupons);
 
-    const response = Object.entries(couponsByRetailer).map(
-      ([retailer, values]) => ({
-        retailer,
-        statistics: getMinMaxAverageTotal(values),
-      })
+    const response = Object.entries(couponsByRetailer).reduce(
+      (acc, [retailer, coupons]) => {
+        acc[retailer] = getMinMaxAverageTotal(coupons);
+        return acc;
+      },
+      {}
     );
 
     res.status(201).json(response);
